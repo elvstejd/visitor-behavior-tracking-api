@@ -1,5 +1,6 @@
 package com.elvstejd.visitorbehaviortrackingapi.connectionpoint;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ public class ConnectionPointController {
     private ConnectionPointRepository connectionPointRepo;
 
     @PostMapping
-    public ConnectionPoint registerConnectionPoint(@RequestBody ConnectionPointDTO connectionPointDTO) {
+    public ConnectionPoint registerConnectionPoint(@Valid @RequestBody ConnectionPointDTO connectionPointDTO) {
         ConnectionPoint newConnectionPoint = new ConnectionPoint();
         newConnectionPoint.setBrand(connectionPointDTO.brand());
         newConnectionPoint.setType(connectionPointDTO.type());
