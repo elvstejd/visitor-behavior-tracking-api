@@ -1,4 +1,11 @@
 package com.elvstejd.visitorbehaviortrackingapi.connectionpoint;
 
-public record ConnectionPointDTO(String brand, ConnectionPointType type) {
+import jakarta.validation.constraints.NotBlank;
+
+public record ConnectionPointDTO(
+        @NotBlank(message = "Brand cannot be blank")
+        String brand,
+        @NotBlank(message = "Type cannot be blank")
+        ConnectionPointType type
+) {
 }
