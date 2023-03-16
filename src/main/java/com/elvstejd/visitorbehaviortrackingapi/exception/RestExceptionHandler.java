@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.List;
 
+// https://www.toptal.com/java/spring-boot-rest-api-error-handling
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
