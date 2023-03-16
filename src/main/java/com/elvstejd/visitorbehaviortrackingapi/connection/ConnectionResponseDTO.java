@@ -1,6 +1,6 @@
 package com.elvstejd.visitorbehaviortrackingapi.connection;
 
-public record ConnectionCreatedResponseDTO(
+public record ConnectionResponseDTO(
         Long id,
         Long deviceId,
         long connectionPointId

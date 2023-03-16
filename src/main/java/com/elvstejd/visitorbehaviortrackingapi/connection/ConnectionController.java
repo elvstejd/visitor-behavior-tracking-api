@@ -23,9 +23,9 @@ public class ConnectionController {
     private DeviceService deviceService;
 
     @PostMapping
-    public ResponseEntity<ConnectionCreatedResponseDTO> logConnection(@Valid @RequestBody ConnectionDTO connectionDTO) {
-        ConnectionPoint connectionPoint = connectionPointService.findById(connectionDTO.connectionPointId());
-        Device device = deviceService.getByMacAddressOrCreate(connectionDTO.macAddress());
+    public ResponseEntity<ConnectionResponseDTO> logConnection(@Valid @RequestBody ConnectionRequestDTO connectionRequestDTO) {
+        ConnectionPoint connectionPoint = connectionPointService.findById(connectionRequestDTO.connectionPointId());
+        Device device = deviceService.getByMacAddressOrCreate(connectionRequestDTO.macAddress());
 
         // assemble a connection obj with reference to device and connection point
         Connection newConnection = new Connection();
@@ -36,12 +36,12 @@ public class ConnectionController {
         Connection savedConnection = connectionRepo.save(newConnection);
 
         // assemble a response
-        ConnectionCreatedResponseDTO connectionCreatedResponseDTO = new ConnectionCreatedResponseDTO(
+        ConnectionResponseDTO connectionResponseDTO = new ConnectionResponseDTO(
                 savedConnection.getId(),
                 savedConnection.getDevice().getId(),
                 savedConnection.getConnectionPoint().getId()
         );
 
-        return new ResponseEntity<>(connectionCreatedResponseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(connectionResponseDTO, HttpStatus.CREATED);
     }
 }
